@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Darling ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI', sans-serif}
+
+body{
+  background: radial-gradient(circle at top, #1a002b, #000);
+  color:#fff;
+  height: 100vh;
+  overflow:hidden;
+}
+
+/* ---------- BACKGROUND ---------- */
+.stars-layer {
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(white 1px, transparent 2px),
+    radial-gradient(white 1px, transparent 2px),
+    radial-gradient(white 2px, transparent 3px);
+  background-size: 550px 550px;
+  background-position: 0 0, 40px 60px, 130px 270px;
+  animation: twinkle 4s infinite alternate;
+  opacity: 0.6;
+  z-index: -2;
+}
+@keyframes twinkle { from { opacity: 0.3; } to { opacity: 0.8; } }
+
+.moon {
+  position: fixed;
+  top: 40px;
+  right: 40px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 40px #fff;
+  opacity: 0.85;
+  z-index: -1;
+}
+
+.petal{
+  position:fixed;
+  top:-10%;
+  font-size:20px;
+  animation:fall linear infinite;
+  z-index:1;
+}
+@keyframes fall{ to{transform:translateY(120vh) rotate(360deg)} }
+
+/* ---------- UTILS ---------- */
+.hidden{display:none !important}
+.center{display:flex;flex-direction:column;align-items:center;justify-content:center; position:relative; z-index: 10;}
+.fade{animation:fade 1.5s ease}
+
+/* ---------- LOCK SCREEN ---------- */
+#lock{ height:100vh; }
+#lock input{
+  padding:12px;
+  border-radius:8px;
+  border:none;
+  text-align:center;
+  font-size:18px;
+  outline: none;
+}
+.shake{animation:shake .4s}
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  25%{transform:translateX(-6px)}
+  75%{transform:translateX(6px)}
+}
+#taunt{
+  margin-top:20px;
+  min-height:30px;
+  color:#ffb3c6;
+  font-size: 18px;
+  white-space: pre-wrap;
+  text-align: center;
+}
+
+/* ---------- ROSE GARDEN ---------- */
+#garden{ height:100vh; text-align:center; padding: 20px; }
+#photo{
+  width:200px;
+  border-radius:20px;
+  margin:15px 0;
+  border: 2px solid #ff5e9c;
+}
+.roses { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 15px 0; }
+.rose-item {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1.5px solid #ff5e9c;
+  padding: 10px 18px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.rose-item:active { transform: scale(0.9); }
+
+#roseText{
+  margin-top:20px;
+  min-height:60px;
+  font-size: 20px;
+  padding: 0 20px;
+  line-height: 1.6;
+  color: #ffb3c6;
+  text-shadow: 0 0 5px rgba(255, 179, 198, 0.5);
+  white-space: pre-wrap; /* Space fix here too */
+}
+
+/* ---------- COUNTDOWN ---------- */
+#countdown{ height:100vh; text-align: center; }
+#timer{ font-size: 40px; color: #ff5e9c; margin-top: 15px; font-weight: bold; }
+
+/* ---------- PROPOSE ---------- */
+#propose{ height:100vh; text-align:center; padding: 20px; }
+.slide{ width:260px; border-radius:20px; margin-bottom: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.5); }
+#callText{
+  margin-top: 30px;
+  white-space: pre-wrap; 
+  font-size: 20px;
+  line-height: 1.8;
+  letter-spacing: 0.8px;
+  padding: 0 15px;
+}
+button{
+  padding: 12px 28px;
+  border: none;
+  border-radius: 25px;
+  background: #ff5e9c;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars-layer"></div>
+<div class="moon"></div>
+
+<div id="lock" class="center">
+  <h2 style="margin-bottom:20px">🔒 Enter Password</h2>
+  <input id="pass" type="password" placeholder="Batao password...">
+  <div id="taunt"></div>
+</div>
+
+<div id="garden" class="center hidden fade">
+  <h2 style="font-weight: 300;">Ye sirf tumhare liye hai… 🤧✨</h2>
+  <img id="photo" src="photo1.jpg">
+  
+  <div class="roses">
+    <div class="rose-item" onclick="showRoseMsg(1)">🌹 1</div>
+    <div class="rose-item" onclick="showRoseMsg(2)">🌹 2</div>
+    <div class="rose-item" onclick="showRoseMsg(3)">🌹 3</div>
+    <div class="rose-item" onclick="showRoseMsg(4)">🌹 4</div>
+    <div class="rose-item" onclick="showRoseMsg(5)">🌹 5</div>
+  </div>
+
+  <div id="roseText">Tap on the roses, my love!</div>
+  
+  <div style="margin-top:25px; color:#ff5e9c; font-size:22px; font-weight:bold;">Happy Rose Day ❤️</div>
+</div>
+
+<div id="countdown" class="center hidden fade">
+  <h2 style="font-weight: 300;">Bas thoda sa waqt aur darling… 🤧🌹</h2>
+  <div id="timer">00h : 00m : 00s</div>
+</div>
+
+<div id="propose" class="center hidden fade">
+  <img id="slide" class="slide">
+  <button onclick="toggleAudio()">🎙 Voice Note Suno</button>
+  <div id="callText"></div>
+</div>
+
+<audio id="audio" src="voice.mp3"></audio>
+
+<script>
+/* PETALS */
+for(let i=0;i<15;i++){
+  let p=document.createElement("div");
+  p.className="petal";
+  p.innerText="🌸";
+  p.style.left=Math.random()*100+"%";
+  p.style.animationDuration=5+Math.random()*5+"s";
+  document.body.appendChild(p);
+}
+
+/* LOCK SYSTEM */
+const password="khadoos";
+const taunts=[
+"🙄 Itna bhi mushkil nahi tha…",
+"😏 Password yaad nahi aa raha?",
+"😤 Aakhri warning de raha hoon…",
+"😑 Thoda dhyaan se type karo…",
+"😌 Bas karo… ab call hi kar lo mujhe 📞"
+];
+let wrong=0, typingInterval;
+
+document.getElementById("pass").addEventListener("keyup",e=>{
+  if(e.key==="Enter"){
+    if(e.target.value.toLowerCase() === password){
+      document.getElementById("lock").classList.add("hidden");
+      document.getElementById("garden").classList.remove("hidden");
+    }else{
+      const l = document.getElementById("lock");
+      l.classList.add("shake");
+      setTimeout(()=>l.classList.remove("shake"),400);
+      typeWriter("taunt", taunts[wrong % taunts.length], 50);
+      wrong++;
+      e.target.value="";
+      e.target.disabled=true;
+      setTimeout(()=>e.target.disabled=false, 2000);
+    }
+  }
+});
+
+/* ROSE MESSAGES (FIXED & WORKING) */
+function showRoseMsg(n){
+  const msgs=[
+    "Tumhari ek muskan mera poora din bana deti hai ❤️",
+    "Tumhari baaton mein wo sukoon hai jo duniya mein kahin nahi milta 🎶",
+    "Zindagi ki sabse khoobsurat feeling tumhara saath hona hai 🌙",
+    "Meri har ek kahani tumhare zikr ke bina adhoori hai ✨",
+    "Har pal, har saans mein bas tumhara hi intezaar hai... 🌹"
+  ];
+  
+  // Isse typewriter effect ke saath dikhayenge taaki space maintain rahe
+  typeWriter("roseText", msgs[n-1], 40);
+
+  if(n===5){
+    setTimeout(()=>{
+      document.getElementById("garden").classList.add("hidden");
+      document.getElementById("countdown").classList.remove("hidden");
+      startCountdown();
+    },4000); // 4 seconds baad countdown taaki wo msg padh sake
+  }
+}
+
+/* COUNTDOWN */
+function startCountdown(){
+  const target=new Date("2026-02-08T00:05:00+05:30").getTime();
+  const x = setInterval(()=>{
+    const now=new Date().getTime();
+    let d=target-now;
+    if(d<=0){
+      clearInterval(x);
+      document.getElementById("countdown").classList.add("hidden");
+      startPropose();
+      return;
+    }
+    let h=Math.floor(d/3600000);
+    let m=Math.floor((d%3600000)/60000);
+    let s=Math.floor((d%60000)/1000);
+    document.getElementById("timer").innerText=`${h}h : ${m}m : ${s}s`;
+  },1000);
+}
+
+/* PROPOSE - 7 PHOTOS */
+const photos=["photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpg","photo5.jpg","photo6.jpg","photo7.jpg"]; 
+let pi=0;
+function startPropose(){
+  document.getElementById("propose").classList.remove("hidden");
+  const s = document.getElementById("slide");
+  s.src=photos[0];
+  setInterval(()=>{
+    pi=(pi+1)%photos.length;
+    s.src=photos[pi];
+  },3000);
+}
+
+/* AUDIO & FINAL TEXT */
+let playing=false;
+function toggleAudio(){
+  const a = document.getElementById("audio");
+  if(!playing){
+    a.play(); playing=true;
+    a.onended=()=>{
+      typeWriter("callText", "I  LOVE  YOU  DARLING  😘\n\nAb  ek  kaam  hai  jo  sirf  tum  kar  sakti  ho…\n\nBas  mujhe  ek  pyara  sa  call  kar  lo  ❤️", 60);
+    }
+  }else{ a.pause(); playing=false; }
+}
+
+/* UNIVERSAL TYPEWRITER (Space Safe) */
+function typeWriter(id, text, speed) {
+  let i = 0;
+  const el = document.getElementById(id);
+  el.textContent = ""; 
+  clearInterval(typingInterval);
+  typingInterval = setInterval(() => {
+    el.textContent += text[i++];
+    if (i >= text.length) clearInterval(typingInterval);
+  }, speed);
+}
+</script>
+</body>
+</html>
